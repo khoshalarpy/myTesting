@@ -60,7 +60,7 @@ task createReleaseCandidate(description: 'Create RC') {
 
         exec {
             //def releaseScope = "${params.ReleaseScope}"
-            String releaseScope = System.getProperty("ReleaseScope")
+            String releaseScope = System.getProperty('relScope')
             println("Execute release candidate task on the new branch"+ releaseScope)
             commandLine "bash", "-c", "echo Release is "+ releaseScope
 
