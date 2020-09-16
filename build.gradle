@@ -63,6 +63,7 @@ task createReleaseCandidate(description: 'Create RC') {
             //String releaseScope = System.getProperty("relScope")
             //println("Execute release candidate task on the new branch"+ releaseScope)
             commandLine "bash", "-c", "echo Release is "+ relScope
+            commandLine "bash", "-c", "gradlew clean"
             println relScope
             commandLine "bash", "-c", "./gradlew candidate -Prelease.scope=relScope -s"
         }
