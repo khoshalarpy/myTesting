@@ -36,29 +36,33 @@ dependencies {
 //}
 // end::wrapper[]
 //ext.systemProperties= System.properties
-task createReleaseCandidate(description: 'Create RC') {
-    doLast {
-        exec {
-            def relBranch
-            //def releaseScope =System.getProperty(ReleaseScope)
-            //String releaseScope = System.getProperty("ReleaseScope")
-            //println "System property ReleaseScope is ${systemProperties.ReleaseScope}"
-            //String releaseScope = System.getenv('ReleaseScope')
-            new ByteArrayOutputStream().withStream { os ->
-                def result = exec {
-                    commandLine "bash", "-c", "./gradlew prepare | grep version | cut -f5 -d \" \" | cut -f1 -d \"-\""
-                    standardOutput = os
-                }
-                relBranch = os.toString().trim()
-            }
-            println("Validate develop and create RC ${relBranch}")
-            commandLine "bash", "-c", " echo Testing"
-        }
+ext.systemProperties= System.properties
+println “System property ReleaseScope is ${systemProperties.ReleaseScope}”
 
-        exec {
-            println("Execute release candidate task on the new branch ")
-            commandLine "bash", "-c", "echo Release ${params.ReleaseScope}"
-            //commandLine "bash", "-c", "./gradlew s -Prelease.scope=${releaseScope}"
-        }
-    }
-}
+
+//task createReleaseCandidate(description: 'Create RC') {
+//    doLast {
+//        exec {
+//            def relBranch
+//            //def releaseScope =System.getProperty(ReleaseScope)
+//            //String releaseScope = System.getProperty("ReleaseScope")
+//            //println "System property ReleaseScope is ${systemProperties.ReleaseScope}"
+//            //String releaseScope = System.getenv('ReleaseScope')
+//            new ByteArrayOutputStream().withStream { os ->
+//                def result = exec {
+//                    commandLine "bash", "-c", "./gradlew prepare | grep version | cut -f5 -d \" \" | cut -f1 -d \"-\""
+//                    standardOutput = os
+//                }
+//                relBranch = os.toString().trim()
+//            }
+//            println("Validate develop and create RC ${relBranch}")
+//            commandLine "bash", "-c", " echo Testing"
+//        }
+//
+//        exec {
+//            println("Execute release candidate task on the new branch ")
+//            commandLine "bash", "-c", "echo Release ${params.ReleaseScope}"
+//            //commandLine "bash", "-c", "./gradlew s -Prelease.scope=${releaseScope}"
+//        }
+//    }
+//}
