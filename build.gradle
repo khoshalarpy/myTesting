@@ -35,13 +35,13 @@ dependencies {
 //    gradleVersion = '6.6'
 //}
 // end::wrapper[]
-ext.systemProperties= System.properties
+//ext.systemProperties= System.properties
 task createReleaseCandidate(description: 'Create RC') {
     doLast {
         exec {
             def relBranch
             //def releaseScope =System.getProperty(ReleaseScope)
-            String releaseScope = System.getProperty("ReleaseScope")
+            //String releaseScope = System.getProperty("ReleaseScope")
             //println "System property ReleaseScope is ${systemProperties.ReleaseScope}"
             //String releaseScope = System.getenv('ReleaseScope')
             new ByteArrayOutputStream().withStream { os ->
@@ -57,7 +57,7 @@ task createReleaseCandidate(description: 'Create RC') {
 
         exec {
             println("Execute release candidate task on the new branch ")
-            commandLine "bash", "-c", "echo ${releaseScope}"
+            commandLine "bash", "-c", "echo Release ${params.ReleaseScope}"
             //commandLine "bash", "-c", "./gradlew s -Prelease.scope=${releaseScope}"
         }
     }
