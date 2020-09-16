@@ -65,7 +65,7 @@ task createReleaseCandidate(description: 'Create RC') {
             commandLine "bash", "-c", "echo Release is "+ relScope
             commandLine "bash", "-c", "gradlew clean"
             println relScope
-            commandLine "bash", "-c", "./gradlew candidate -Prelease.scope=relScope -s"
+            commandLine "bash", "-c", "./gradlew snapshot -Prelease.scope=relScope --debug"
         }
     }
 }
