@@ -14,11 +14,11 @@ pipeline {
     }
 
     stages {
-         stage('Integration Tests') {
+         stage('Nebula testing') {
               steps {
                     //echo "Creating RC branch from " + env.BRANCH_NAME
                     echo "release scope is ${params.ReleaseScope}"
-                    sh "echo testing"
+                    sh "gradlew tasks"
 
               }
         }
