@@ -35,7 +35,7 @@ dependencies {
 //    gradleVersion = '6.6'
 //}
 // end::wrapper[]
-
+ext.systemProperties= System.properties
 task createReleaseCandidate(description: 'Create RC') {
     doLast {
         exec {
