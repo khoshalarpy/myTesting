@@ -40,7 +40,7 @@ task createReleaseCandidate(description: 'Create RC') {
     doLast {
         exec {
             def relBranch
-            def releaseScope =System.getProperty(‘ReleaseScope’)
+            def releaseScope =System.getProperty(ReleaseScope)
             println "System property ReleaseScope is ${systemProperties.ReleaseScope}"
             //String releaseScope = System.getenv('ReleaseScope')
             new ByteArrayOutputStream().withStream { os ->
