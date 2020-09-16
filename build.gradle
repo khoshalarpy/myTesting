@@ -36,13 +36,14 @@ dependencies {
 //}
 // end::wrapper[]
 //ext.systemProperties= System.properties
-println "System property ReleaseScope is" relScope
+
 
 
 task createReleaseCandidate(description: 'Create RC') {
     doLast {
         exec {
             def relBranch
+            println "System property ReleaseScope is" relScope
             //def releaseScope =System.getProperty(ReleaseScope)
             //String releaseScope = System.getProperty("ReleaseScope")
             //println "System property ReleaseScope is ${systemProperties.ReleaseScope}"
