@@ -37,7 +37,7 @@ dependencies {
 // end::wrapper[]
 //ext.systemProperties= System.properties
 ext.systemProperties= System.properties
-println “System property ReleaseScope is ${systemProperties.ReleaseScope}”
+println "System property ReleaseScope is ${systemProperties.ReleaseScope}"
 
 
 //task createReleaseCandidate(description: 'Create RC') {
