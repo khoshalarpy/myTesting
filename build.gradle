@@ -54,8 +54,8 @@ task createReleaseCandidate(description: 'Create RC') {
                 }
                 relBranch = os.toString().trim()
             }
-            println("Validate develop and create RC ${relBranch}")
-            commandLine "bash", "-c", " echo Testing"
+            //println("Validate develop and create RC ${relBranch}")
+            commandLine "bash", "-c", " echo Testing1"
         }
 
         exec {
