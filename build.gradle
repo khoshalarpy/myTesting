@@ -56,7 +56,7 @@ task createReleaseCandidate(description: 'Create RC') {
         exec {
             println("Execute release candidate task on the new branch ")
             commandLine "bash", "-c", "echo ${releaseScope}"
-            commandLine "bash", "-c", "./gradlew candidateSetup -Prelease.scope=${releaseScope}"
+            //commandLine "bash", "-c", "./gradlew s -Prelease.scope=${releaseScope}"
         }
     }
 }
