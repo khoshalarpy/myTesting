@@ -44,7 +44,7 @@ task createReleaseCandidate(description: 'Create RC') {
         exec {
             def relBranch
             println "System property ReleaseScope is" ${relScope}
-            //def releaseScope =System.getProperty(ReleaseScope)
+            //def releaseScope = System.getProperty(ReleaseScope)
             //String releaseScope = System.getProperty("ReleaseScope")
             //println "System property ReleaseScope is ${systemProperties.ReleaseScope}"
             //String releaseScope = System.getenv('ReleaseScope')
@@ -60,8 +60,9 @@ task createReleaseCandidate(description: 'Create RC') {
         }
 
         exec {
-            println("Execute release candidate task on the new branch ")
-            commandLine "bash", "-c", "echo Release is relScope"
+            def releaseScope = "${params.ReleaseScope}"
+            println("Execute release candidate task on the new branch"+ releaseScope)
+            commandLine "bash", "-c", "echo Release is "+ releaseScope
 
         }
     }
