@@ -41,50 +41,31 @@ dependencies {
 task createReleaseCandidate (dependsOn: "prepareReleaseVersion") {
     doLast {
         exec {
+            commandLine "bash", "-c", " echo step3"
+        }
+    }
+}
+task createRCfromDevelop(dependsOn: "prepareReleaseVersion") {
+      doLast {
+          exec {
+              println step2
+              commandLine "bash", "-c", "git checkout -b"+ relBranch
+          }
+      }
+ }
+task prepareReleaseVersion() {
+    doLast {
+        exec {
             def relBranch
             new ByteArrayOutputStream().withStream { os ->
                 def result = exec {
-                    commandLine "bash", "-c", "echo step 3"
+                    commandLine "bash", "-c", "./gradlew prepare | grep version | cut -f5 -d \\\" \\\" | cut -f1 -d \\\"-\\\""
                     standardOutput = os
                 }
                 relBranch = os.toString().trim()
             }
-            commandLine "bash", "-c", " echo Testing3"
+            commandLine "bash", "-c", " echo step1"
 
         }
     }
-
 }
-
-    task prepareReleaseVersion (dependsOn: "createRCfromDevelop") {
-        doLast {
-            exec {
-                def relBranch
-                new ByteArrayOutputStream().withStream { os ->
-                    def result = exec {
-                        commandLine "bash", "-c", "echo step 2"
-                        standardOutput = os
-                    }
-                    relBranch = os.toString().trim()
-                }
-                commandLine "bash", "-c", " echo Testing2"
-
-            }
-        }
-    }
-        task createRCfromDevelop() {
-            doLast {
-                exec {
-                    def relBranch
-                    new ByteArrayOutputStream().withStream { os ->
-                        def result = exec {
-                            commandLine "bash", "-c", "echo step 1"
-                            standardOutput = os
-                        }
-                        relBranch = os.toString().trim()
-                    }
-                    commandLine "bash", "-c", " echo Testing1"
-
-                }
-            }
-        }
