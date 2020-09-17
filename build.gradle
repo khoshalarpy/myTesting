@@ -45,14 +45,16 @@ task createReleaseCandidate (dependsOn: "createRCfromDevelop") {
         }
     }
 }
+
 task createRCfromDevelop(dependsOn: "prepareReleaseVersion") {
-      doLast {
-          exec {
-              commandLine "bash", "-c", "echo step2"
-              commandLine "bash", "-c", "git checkout -b"+ relBranch
-          }
-      }
- }
+    doLast {
+        exec {
+            commandLine "bash", "-c", "echo step2"
+            commandLine "bash", "-c", "git checkout -b"+ relBranch
+        }
+    }
+}
+
 task prepareReleaseVersion() {
     doLast {
         exec {
