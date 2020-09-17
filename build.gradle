@@ -50,7 +50,7 @@ task createRCfromDevelop(dependsOn: "prepareReleaseVersion") {
     doLast {
         exec {
             commandLine "bash", "-c", "echo step2"
-            commandLine "bash", "-c", "git checkout -b"+ relBranch
+            //commandLine "bash", "-c", "git checkout -b"+ relBranch
         }
     }
 }
@@ -66,7 +66,10 @@ task prepareReleaseVersion() {
                 }
                 relBranch = os.toString().trim()
             }
-            commandLine "bash", "-c", " echo step1"
+            println relBranch
+            exec {
+                commandLine "bash", "-c", "git checkout -b"+ relBranch
+            }
 
         }
     }
