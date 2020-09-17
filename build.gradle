@@ -47,13 +47,13 @@ task createReleaseCandidate (dependsOn: "createRCfromDevelop") {
 }
 
 task createRCfromDevelop(dependsOn: "prepareReleaseVersion") {
-//    doLast {
+    doLast {
         exec {
             commandLine "bash", "-c", "echo step2"
             //commandLine "bash", "-c", "git checkout -b"+ relBranch
         }
     }
-//}
+}
 
 task prepareReleaseVersion() {
     doLast {
@@ -66,8 +66,12 @@ task prepareReleaseVersion() {
                 }
                 relBranch = os.toString().trim()
             }
-            println ("Create RC"+ relBranch )
-            commandLine "bash", "-c", "git branch"
+            def getVersionName = {
+                def hashStdOut = new ByteArrayOutputStream()
+                exec {
+                    commandLine "git", "checkout", "-b", relBranch
+                    standardOutput = hashStdOut
+                }
+            }
         }
     }
-}
