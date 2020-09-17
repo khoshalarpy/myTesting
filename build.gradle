@@ -59,7 +59,7 @@ task prepareReleaseVersion() {
             def relBranch
             new ByteArrayOutputStream().withStream { os ->
                 def result = exec {
-                    commandLine "bash", "-c", "./gradlew prepare | grep version | cut -f5 -d \\\" \\\" | cut -f1 -d \\\"-\\\""
+                    commandLine "bash", "-c", "./gradlew prepare | grep version | cut -f5 -d \" \" | cut -f1 -d \"-\""
                     standardOutput = os
                 }
                 relBranch = os.toString().trim()
