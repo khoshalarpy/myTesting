@@ -47,17 +47,13 @@ task createReleaseCandidate (dependsOn: "createRCfromDevelop") {
 }
 
 task createRCfromDevelop(dependsOn: "prepareReleaseVersion") {
-    doLast {
         exec {
             commandLine "git", "branch"
             //commandLine "bash", "-c", "git checkout -b"+ relBranch
         }
     }
-}
-
-task prepareReleaseVersion() {
-    doLast {
-        exec {
+task prepareReleaseVersion {
+      exec {
             def relBranch
             new ByteArrayOutputStream().withStream { os ->
                 def result = exec {
@@ -75,4 +71,3 @@ task prepareReleaseVersion() {
 //            }
         }
     }
-}
