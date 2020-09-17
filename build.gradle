@@ -38,7 +38,7 @@ dependencies {
 //ext.systemProperties= System.properties
 
 
-task createReleaseCandidate (dependsOn: "prepareReleaseVersion") {
+task createReleaseCandidate (dependsOn: "createRCfromDevelop") {
     doLast {
         exec {
             commandLine "bash", "-c", " echo step3"
