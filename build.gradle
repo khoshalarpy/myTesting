@@ -66,12 +66,8 @@ task prepareReleaseVersion() {
                 }
                 relBranch = os.toString().trim()
             }
-            println relBranch
-
-        exec {
-                commandLine "bash", "-c", "git checkout -b" relBranch
-            }
-
+            println ("Create RC ${relBranch}")
+            commandLine "bash", "-c", "git checkout -b" relBranch
         }
     }
 }
