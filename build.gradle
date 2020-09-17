@@ -38,33 +38,53 @@ dependencies {
 //ext.systemProperties= System.properties
 
 
-
-task createReleaseCandidate(description: 'Create RC') {
+task createReleaseCandidate (dependsOn: "prepareReleaseVersion") {
     doLast {
         exec {
             def relBranch
-            //println "System property ReleaseScope is" ${relScope}
-            //String releaseScope = System.getProperty("ReleaseScope")
-            //println "System property ReleaseScope is ${systemProperties.ReleaseScope}"
-            //String releaseScope = System.getenv('ReleaseScope')
             new ByteArrayOutputStream().withStream { os ->
                 def result = exec {
-                    commandLine "bash", "-c", "./gradlew prepare | grep version | cut -f5 -d \" \" | cut -f1 -d \"-\""
+                    commandLine "bash", "-c", "echo step 3"
                     standardOutput = os
                 }
                 relBranch = os.toString().trim()
             }
-            //println("Validate develop and create RC ${relBranch}")
-            commandLine "bash", "-c", " echo Testing1"
-        }
+            commandLine "bash", "-c", " echo Testing3"
 
-        exec {
-            //def releaseScope = "${params.ReleaseScope}"
-            //String releaseScope = System.getProperty("relScope")
-            //println("Execute release candidate task on the new branch"+ releaseScope)
-            commandLine "bash", "-c", "echo Release is "+ relScope
-            println relScope
-            commandLine "bash", "-c", "./gradlew candidate -Prelease.scope=relScope"
         }
     }
+
 }
+
+    task prepareReleaseVersion (dependsOn: "createRCfromDevelop") {
+        doLast {
+            exec {
+                def relBranch
+                new ByteArrayOutputStream().withStream { os ->
+                    def result = exec {
+                        commandLine "bash", "-c", "echo step 2"
+                        standardOutput = os
+                    }
+                    relBranch = os.toString().trim()
+                }
+                commandLine "bash", "-c", " echo Testing2"
+
+            }
+        }
+    }
+        task createRCfromDevelop() {
+            doLast {
+                exec {
+                    def relBranch
+                    new ByteArrayOutputStream().withStream { os ->
+                        def result = exec {
+                            commandLine "bash", "-c", "echo step 1"
+                            standardOutput = os
+                        }
+                        relBranch = os.toString().trim()
+                    }
+                    commandLine "bash", "-c", " echo Testing1"
+
+                }
+            }
+        }
