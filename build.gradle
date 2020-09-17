@@ -67,8 +67,9 @@ task prepareReleaseVersion() {
                 relBranch = os.toString().trim()
             }
             println relBranch
-            exec {
-                commandLine "bash", "-c", "git checkout -b"+ relBranch
+
+        exec {
+                commandLine "bash", "-c", "git checkout -b" relBranch
             }
 
         }
