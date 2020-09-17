@@ -48,7 +48,7 @@ task createReleaseCandidate (dependsOn: "createRCfromDevelop") {
 task createRCfromDevelop(dependsOn: "prepareReleaseVersion") {
       doLast {
           exec {
-              println step2
+              commandLine "bash", "-c", "echo step2"
               commandLine "bash", "-c", "git checkout -b"+ relBranch
           }
       }
