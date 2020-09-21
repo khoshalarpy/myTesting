@@ -22,7 +22,7 @@ pipeline {
               steps {
                     //echo "Creating RC branch from " + env.BRANCH_NAME
                     echo "release scope is ${params.ReleaseScope}"
-                  sh "git checkout -b 0.1.3"
+                  sh "git checkout -b 0.1.4"
                   //sh "chmod +x gradlew"
                   //sh "./gradlew clean"
                   sh "git reset --hard"
