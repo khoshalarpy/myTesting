@@ -24,6 +24,8 @@ pipeline {
                     echo "release scope is ${params.ReleaseScope}"
                    sh "chmod +x gradlew"
                   sh "git checkout 0.1.0"
+                  sh "./gradlew clean"
+                  sh "git reset --hard"
                   sh "./gradlew candidate -PrelScope=${params.ReleaseScope}"
 
               }
