@@ -27,7 +27,7 @@ pipeline {
                   sh "./gradlew clean"
                   sh "git reset --hard"
                   sh "chmod +x gradlew"
-                  sh "./gradlew candidate -PrelScope=${params.ReleaseScope}"
+                  //sh "./gradlew candidate -PrelScope=${params.ReleaseScope}"
 
               }
         }
