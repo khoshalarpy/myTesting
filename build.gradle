@@ -38,36 +38,37 @@ dependencies {
 //ext.systemProperties= System.properties
 
 
-task createReleaseCandidate (dependsOn: "createRCfromDevelop") {
-    doLast {
-        exec {
-            commandLine "bash", "-c", " echo step3"
-        }
-    }
-}
-
-task createRCfromDevelop(dependsOn: "prepareReleaseVersion") {
-        exec {
-            commandLine "git", "branch"
-            //commandLine "bash", "-c", "git checkout -b"+ relBranch
-        }
-    }
-task prepareReleaseVersion {
-      exec {
-            def relBranch
-            new ByteArrayOutputStream().withStream { os ->
-                def result = exec {
-                    commandLine "bash", "-c", "./gradlew prepare | grep version | cut -f5 -d \" \" | cut -f1 -d \"-\""
-                    standardOutput = os
-                }
-                relBranch = os.toString().trim()
-            }
-//            def getVersionName = {
-//                def hashStdOut = new ByteArrayOutputStream()
-//                exec {
-//                    commandLine "git", "checkout", "-b", relBranch
-//                    standardOutput = hashStdOut
+//task createReleaseCandidate (dependsOn: "createRCfromDevelop") {
+//    doLast {
+//        exec {
+//            commandLine "bash", "-c", " echo step3"
+//        }
+//    }
+//}
+//
+//task createRCfromDevelop(dependsOn: "prepareReleaseVersion") {
+//        exec {
+//            //commandLine "git", "checkout", "-b", relBranch
+//            //commandLine "git", "push", "--set-upstream", "origin"
+//            commandLine "bash", "-c", "echo Testing"
+//        }
+//    }
+//task prepareReleaseVersion {
+//      exec {
+//            def relBranch
+//            new ByteArrayOutputStream().withStream { os ->
+//                def result = exec {
+//                    commandLine "bash", "-c", "./gradlew prepare | grep version | cut -f5 -d \" \" | cut -f1 -d \"-\""
+//                    standardOutput = os
 //                }
+//                relBranch = os.toString().trim()
 //            }
-        }
-    }
+////            def getVersionName = {
+////                def hashStdOut = new ByteArrayOutputStream()
+////                exec {
+////                    commandLine "git", "checkout", "-b", relBranch
+////                    standardOutput = hashStdOut
+////                }
+////            }
+//        }
+//    }
