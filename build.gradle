@@ -3,7 +3,7 @@ plugins {
 }
 
 allprojects {
-    apply plugin: 'nebula.nebula-release'
+    apply plugin: 'nebula-release'
 }
 apply plugin: 'java'
 apply plugin: 'eclipse'
