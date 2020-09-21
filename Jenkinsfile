@@ -23,7 +23,8 @@ pipeline {
                     //echo "Creating RC branch from " + env.BRANCH_NAME
                     echo "release scope is ${params.ReleaseScope}"
                    sh "chmod +x gradlew"
-                  sh "./gradlew -PrelScope=${params.ReleaseScope} createReleaseCandidate"
+                  sh "git checkout -b 0.1.0"
+                  sh "./gradlew candidate -PrelScope=${params.ReleaseScope}"
 
               }
         }
