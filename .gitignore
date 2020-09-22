@@ -8,4 +8,5 @@ build
 
 *.log
 gradlew
-
+.gradle/6.5/fileHashes/fileHashes.lock
+.gradle/checksums/checksums.lock
