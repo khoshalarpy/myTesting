@@ -2,9 +2,6 @@ plugins {
     id 'nebula.release' version '13.0.0'
 }
 
-allprojects {
-    apply plugin: 'nebula-release'
-}
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'application'
