@@ -38,33 +38,37 @@ dependencies {
 //ext.systemProperties= System.properties
 
 
-
-task createReleaseCandidate(description: 'Create RC') {
-    doLast {
-        exec {
-            def relBranch
-            //println "System property ReleaseScope is" ${relScope}
-            //String releaseScope = System.getProperty("ReleaseScope")
-            //println "System property ReleaseScope is ${systemProperties.ReleaseScope}"
-            //String releaseScope = System.getenv('ReleaseScope')
-            new ByteArrayOutputStream().withStream { os ->
-                def result = exec {
-                    commandLine "bash", "-c", "./gradlew prepare | grep version | cut -f5 -d \" \" | cut -f1 -d \"-\""
-                    standardOutput = os
-                }
-                relBranch = os.toString().trim()
-            }
-            //println("Validate develop and create RC ${relBranch}")
-            commandLine "bash", "-c", " echo Testing1"
-        }
-
-        exec {
-            //def releaseScope = "${params.ReleaseScope}"
-            //String releaseScope = System.getProperty("relScope")
-            //println("Execute release candidate task on the new branch"+ releaseScope)
-            commandLine "bash", "-c", "echo Release is "+ relScope
-            println relScope
-            commandLine "bash", "-c", "./gradlew candidate -Prelease.scope=relScope"
-        }
-    }
-}
+//task createReleaseCandidate (dependsOn: "createRCfromDevelop") {
+//    doLast {
+//        exec {
+//            commandLine "bash", "-c", " echo step3"
+//        }
+//    }
+//}
+//
+//task createRCfromDevelop(dependsOn: "prepareReleaseVersion") {
+//        exec {
+//            //commandLine "git", "checkout", "-b", relBranch
+//            //commandLine "git", "push", "--set-upstream", "origin"
+//            commandLine "bash", "-c", "echo Testing"
+//        }
+//    }
+//task prepareReleaseVersion {
+//      exec {
+//            def relBranch
+//            new ByteArrayOutputStream().withStream { os ->
+//                def result = exec {
+//                    commandLine "bash", "-c", "./gradlew prepare | grep version | cut -f5 -d \" \" | cut -f1 -d \"-\""
+//                    standardOutput = os
+//                }
+//                relBranch = os.toString().trim()
+//            }
+////            def getVersionName = {
+////                def hashStdOut = new ByteArrayOutputStream()
+////                exec {
+////                    commandLine "git", "checkout", "-b", relBranch
+////                    standardOutput = hashStdOut
+////                }
+////            }
+//        }
+//    }
